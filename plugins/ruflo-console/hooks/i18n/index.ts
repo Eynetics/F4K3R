@@ -13,7 +13,7 @@
  *   3. einzelne Begriffe (PHRASES) innerhalb eines Textes, nur an Wortgrenzen und nie in Pfaden, Befehlen oder Code
  */
 import type { Kit } from '../views/common'
-import { EXACT, PHRASES } from './de'
+import { EXACT, PHRASES, SECTION } from './de'
 
 const lang = (): string => {
   const env = (globalThis as { process?: { env?: Record<string, string | undefined> } }).process?.env
@@ -63,6 +63,11 @@ function translateCore(core: string): string {
 
     if (key !== undefined) return clipTo(exact.get(key) ?? key, core.length)
   }
+
+  // Abschnittslinie im Menü: "── start here ─────"
+  const rule = /^(─+ )(.+?)( ─+)$/.exec(core)
+
+  if (rule !== null && rule[2] !== undefined && SECTION[rule[2]] !== undefined) return `${rule[1]}${SECTION[rule[2]]}${rule[3]}`
 
   // Zeilen mit Füllpunkten ("Swarm topology .......") oder einem Zusatz in Klammern ("…  (swarm.maxAgents)"):
   // den Namen davor übersetzen, den Rest stehen lassen.

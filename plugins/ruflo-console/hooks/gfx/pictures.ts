@@ -6,6 +6,7 @@
  */
 import { Braille, COLOR, Grid, mix, ramp, sparkline } from './raster'
 import { bigText } from './font'
+import { BRAND } from '../brand'
 import { hash } from './boot-cyber'
 import { getBuild } from '../build'
 import { CONSOLE_VERSION } from '../version'
@@ -238,7 +239,7 @@ export function markPicture(isWorking: boolean, t: number): Grid {
 
 /** The pane's title strip: a highlight sweeps across it every few seconds while the pane is focused. Decoration only. */
 /** RUFLO in a two-row half-block font, the way a BBS splash spelled its name. */
-const LOGO = ['█▀█ █ █ █▀▀ █   █▀█', '█▀▄ █▄█ █▀  █▄▄ █▄█'] as const
+const LOGO = bigText(BRAND)
 const NEON_MAGENTA = 0xff2a6d
 const NEON_CYAN = 0x05d9e8
 
@@ -347,7 +348,7 @@ export function bannerPicture(project: string, columns: number, t: number, age =
 
     grid.text(x0, 0, shown.slice(0, room), NEON_MAGENTA)
 
-    const line = `▸ npx ruflo · ${project}`
+    const line = `▸ ${BRAND.toLowerCase()} · ${project}`
     const node = line.length <= room - 2 ? line : `${line.slice(0, Math.max(1, room - 3))}…`
 
     grid.text(x0, 1, node, NEON_CYAN)
@@ -373,7 +374,7 @@ export function titlePicture(name: string, columns: number, t: number, age = Inf
   const width = Math.max(top.length, bottom.length)
   const shimmer = ((t / 40) % (width + 30)) - 15
   // `RUFLO | PAGE`: the RUFLO letters move like the banner on the menu (a white glow sweeping a magenta to cyan ramp); the page's name keeps its slower coral shimmer.
-  const logo = name.toLowerCase().startsWith('ruflo |') ? bigText('ruflo')[0].length : 0
+  const logo = name.toLowerCase().startsWith(`${BRAND.toLowerCase()} |`) ? bigText(BRAND)[0].length : 0
   const sweep = ((t / 28) % (logo + 40)) - 20
 
   for (let y = 0; y < 2; y++) {

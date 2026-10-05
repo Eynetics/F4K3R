@@ -26,6 +26,25 @@ export const EXACT: Record<string, string> = {
   'find a page': 'Seite suchen',
   go: 'los',
 
+
+  // Hauptmenü: Mission Control und Kopfzeilen
+  '▓▒░ MISSION CONTROL ░▒▓': '▓▒░ MISSIONSZENTRALE ░▒▓',
+  '(1) open Missions': '(1) Missionen öffnen',
+  'what do you want done? e.g. add a dark mode toggle to settings': 'was soll erledigt werden? z. B. einen Dunkelmodus-Schalter in den Einstellungen ergänzen',
+  'what should get done? e.g. add a dark mode toggle to settings (Enter plans it)': 'was soll erledigt werden? z. B. einen Dunkelmodus-Schalter in den Einstellungen ergänzen (Enter plant es)',
+  'a new goal, planned in place of this one': 'ein neues Ziel, das dieses ersetzt',
+  'research → create (ADRs, SOP) → build → test → validate → secure → benchmark → learn': 'recherchieren → erstellen (ADRs, SOP) → bauen → testen → prüfen → absichern → messen → lernen',
+  'goal → SPARC plan → tasks → Claude': 'Ziel → SPARC-Plan → Aufgaben → Claude',
+  goal: 'Ziel',
+  '✎ goal': '✎ Ziel',
+  plan: 'planen',
+  groups: 'Gruppen',
+  'NETWORKS:': 'NETZWERKE:',
+  '▶ run next': '▶ nächste ausführen',
+  '▶ resume': '▶ fortsetzen',
+  '⏸ pause': '⏸ pausieren',
+  'x.ruv.io Board': 'x.ruv.io-Brett',
+
   // Fußzeile und Statuszeile
   'keys on': 'Tasten an',
   'keys off': 'Tasten aus',
@@ -216,3 +235,16 @@ export const PHRASES: readonly (readonly [string, string])[] = [
   ['Enter asks to set it', 'Enter fragt zum Setzen'],
   ['Enter asks', 'Enter fragt'],
 ]
+
+/** Abschnittsnamen im Hauptmenü, gezeichnet als `── name ────`. */
+export const SECTION: Record<string, string> = {
+  'start here': 'hier starten',
+  coordinate: 'koordinieren',
+  learn: 'lernen',
+  remember: 'erinnern',
+  protect: 'schützen',
+  observe: 'beobachten',
+  network: 'Netzwerk',
+  extend: 'erweitern',
+  tools: 'Werkzeuge',
+}

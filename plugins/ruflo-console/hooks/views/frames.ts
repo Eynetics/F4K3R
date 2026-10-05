@@ -3,6 +3,7 @@
  * blits them, both through `picturesOf`, so a frame is always the mounted size. Each picture's model is read from the
  * state here; the drawing itself is in ../gfx.
  */
+import { BRAND } from '../brand'
 import type { AuditTrend, HarnessScore, Intelligence } from '../data/cli'
 import { recentByAgent } from '../data/events'
 import { agentLabels } from '../data/parse'
@@ -177,7 +178,7 @@ export function picturesOf(state: State, columns: number, nowMs: number, t: numb
   if (state.options.look === 'bbs') {
     const page = state.isHelp ? 'help' : state.palette.isOpen ? 'palette' : state.view === 'agent' ? 'agent' : (VIEWS.find(view => view.id === state.view)?.label ?? state.view)
     // The menu is the RUFLO board itself; every other page reads `RUFLO | PAGE`, the logo's style left of the page's name.
-    const name = state.view === 'menu' && !state.isHelp && !state.palette.isOpen ? 'ruflo bbs' : `ruflo | ${page}`
+    const name = state.view === 'menu' && !state.isHelp && !state.palette.isOpen ? BRAND : `${BRAND} | ${page}`
 
     // The first of these whose art fits beside the icons: the whole name, the page alone, its short name; clipped only as a last resort.
     const shortName = VIEWS.find(view => view.id === state.view)?.short ?? page

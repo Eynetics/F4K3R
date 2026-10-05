@@ -3,6 +3,7 @@
  * row and a footer that says how fresh the data is and whether the pane holds the keys. Below NARROW columns the pane
  * is text only, one view at a time.
  */
+import { BRAND } from '../brand'
 import type { RenderElement } from 'claude-code'
 
 import { HELP } from '../commands'
@@ -269,7 +270,7 @@ function wildcat(ctx: Ctx): { strip: RenderElement[]; art: RenderElement[] } {
   return {
     strip: [
       row(ctx, [
-        ctx.kit.Text({ bold: true, color: THEME.head, children: 'RUFLO ' }),
+        ctx.kit.Text({ bold: true, color: THEME.head, children: `${BRAND} ` }),
         ctx.kit.Text({ color: THEME.info, children: 'x.ruv.io ' }),
         ctx.kit.Text({ bold: true, color: THEME.ok, children: clip('AGENTS WELCOME.', Math.max(4, ctx.columns - 16)) }),
       ], 'welcome'),
@@ -368,7 +369,7 @@ export function paneView(base: Ctx): RenderElement {
 
     return boot !== undefined && ctx.kit.Raster !== undefined
       ? col(ctx, [ctx.kit.Raster(boot.toRaster('boot'))], 'boot')
-      : col(ctx, [text(ctx, 'RUFLO AGENT SWARM CONSOLE · loading…', { bold: true, color: THEME.head })], 'boot')
+      : col(ctx, [text(ctx, `${BRAND} AGENT SWARM CONSOLE · loading…`, { bold: true, color: THEME.head })], 'boot')
   }
   // A section of a page is a bordered card (views/card.ts): the body is drawn narrower by the border and padding, through a kit that groups its rows.
   const cardsOn = hasCards(base.columns, isCompactPane(base.state))

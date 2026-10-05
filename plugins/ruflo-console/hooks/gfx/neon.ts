@@ -6,6 +6,7 @@
  * (the main menu), the sign is simply lit.
  */
 import { Grid, mix } from './raster'
+import { BRAND_SIGN } from '../brand'
 
 /** Light adds: the wall keeps its colour and the tube's light is laid over it, so a halo stays saturated, not muddy. */
 function add(base: number, light: number, k: number): number {
@@ -27,6 +28,11 @@ const WIRE = 0x15151a
 /** The lettering, five rows, one string per row; lower case sits on rows 1-4. */
 const GLYPHS: Record<string, readonly string[]> = {
   R: ['╭───╮', '│   │', '├──┬╯', '│  ╰╮', '╵   ╰'],
+  // F4K3R
+  F: ['╭───╴', '│    ', '├──╴ ', '│    ', '╵    '],
+  K: ['╷   ╷', '│  ╭╯', '├──┤ ', '│  ╰╮', '╵   ╵'],
+  '3': ['╶───╮', '    │', ' ───┤', '    │', '╶───╯'],
+  '4': ['╷   ╷', '│   │', '╰───┤', '    │', '    ╵'],
   u: ['     ', '╷   ╷', '│   │', '│   │', '╰───╯'],
   f: [' ╭─╴', ' │  ', '╶┼─╴', ' │  ', ' ╵  '],
   l: ['╷ ', '│ ', '│ ', '│ ', '╰╴'],
@@ -39,7 +45,7 @@ type Tube = { color: number; strikeMs: number; seed: number }
 
 /** The sign's cells in its own coordinates, built once: where each tube character sits and which tube it belongs to. */
 function build(): { width: number; height: number; cells: Cell[]; tubes: Tube[]; clips: number[]; inner: { x0: number; x1: number; y0: number; y1: number } } {
-  const word = 'Ruflo'
+  const word = BRAND_SIGN
   const tubes: Tube[] = [{ color: PINK, strikeMs: 0, seed: 1 }]
   const cells: Cell[] = []
   const pad = 3
