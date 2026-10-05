@@ -1,9 +1,9 @@
 {
   "name": "ruflo",
-  "description": "RuFlo Marketplace: Claude Code native agents, swarms, workers, and MCP tools for continuous software engineering",
+  "description": "F4K3R – deutsche Ausgabe von RuFlo (Fork von ruvnet/ruflo, MIT): Agenten, Schwärme, Worker und MCP-Werkzeuge für Claude Code, Konsole auf Deutsch",
   "owner": {
-    "name": "ruvnet",
-    "url": "https://github.com/ruvnet"
+    "name": "Eynetics",
+    "url": "https://github.com/Eynetics"
   },
   "plugins": [
     {

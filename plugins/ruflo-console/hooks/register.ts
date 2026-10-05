@@ -1,4 +1,5 @@
 import type { EngineInterface, PluginOptions, Register } from 'claude-code'
+import { withGerman } from './i18n'
 import { ANSWER_KEYS } from './views/attention'
 
 import { createController, type Controller } from './controller'
@@ -284,7 +285,7 @@ export const register: Register = (on, raw: PluginOptions) => {
 
     state.pane.rows = Math.max(0, Math.floor(Number(e.props.scroll?.bodyRows) || 0))
 
-    const tree = paneView({ kit: withClearing(kit, state, control.actions.clearField), state, nowMs: Date.now(), columns, pictures, act: control.actions })
+    const tree = paneView({ kit: withGerman(withClearing(kit, state, control.actions.clearField)), state, nowMs: Date.now(), columns, pictures, act: control.actions })
 
     state.stats.renders.push(Date.now() - started)
     if (state.stats.renders.length > 200) state.stats.renders.shift()
@@ -323,7 +324,7 @@ export const register: Register = (on, raw: PluginOptions) => {
     bound.markFrame(e.requestId, e.props.isWorking && mark !== null)
 
     // A click on a part opens the console on its view, with the keys, so the person can act there at once.
-    return barView(table, state, Math.floor(Number(e.props.bodyColumns) || 80), mark, () => void bound.open(false), view => {
+    return barView(withGerman(table), state, Math.floor(Number(e.props.bodyColumns) || 80), mark, () => void bound.open(false), view => {
       bound.setView(view)
       void bound.open(true)
     })

@@ -15,7 +15,11 @@
 import type { Kit } from '../views/common'
 import { EXACT, PHRASES } from './de'
 
-const lang = (): string => (typeof process !== 'undefined' ? (process.env.F4K3R_LANG ?? 'de') : 'de').toLowerCase()
+const lang = (): string => {
+  const env = (globalThis as { process?: { env?: Record<string, string | undefined> } }).process?.env
+
+  return (env?.F4K3R_LANG ?? 'de').toLowerCase()
+}
 
 export const isGerman = (): boolean => lang() !== 'en'
 
@@ -59,6 +63,12 @@ function translateCore(core: string): string {
 
     if (key !== undefined) return clipTo(exact.get(key) ?? key, core.length)
   }
+
+  // Zeilen mit Füllpunkten ("Swarm topology .......") oder einem Zusatz in Klammern ("…  (swarm.maxAgents)"):
+  // den Namen davor übersetzen, den Rest stehen lassen.
+  const tail = /^(.+?)( \.{2,}.*| ?\.{3,}.*|\s{2,}\(.*\))$/s.exec(core)
+
+  if (tail !== null && tail[1] !== undefined && exact.has(tail[1].trim())) return `${exact.get(tail[1].trim())}${tail[2] ?? ''}`
 
   let out = core
 

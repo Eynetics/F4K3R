@@ -23,7 +23,7 @@ export const PLUGIN_NAME = 'ruflo-console'
 export const MARKET = RUFLO_MARKET
 export const PLUGIN_ID = `${PLUGIN_NAME}@${MARKET}`
 /** The published manifest: the same repository the ruflo marketplace is added from (ruvnet/ruflo), its main branch. */
-export const MANIFEST_URL = 'https://raw.githubusercontent.com/ruvnet/ruflo/main/plugins/ruflo-console/.claude-plugin/plugin.json'
+export const MANIFEST_URL = 'https://raw.githubusercontent.com/Eynetics/F4K3R/main/plugins/ruflo-console/.claude-plugin/plugin.json'
 /** How often a session checks (the answer is cached across sessions), and how long one session's "I am updating" holds the others off. */
 export const CHECK_EVERY_MS = 24 * 60 * 60_000
 /** A session left open re-asks on this timer; the daily gate above still decides whether the network is touched. */
